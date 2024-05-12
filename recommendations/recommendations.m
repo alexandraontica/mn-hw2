@@ -3,15 +3,21 @@ function recoms = recommendations(path, liked_theme, num_recoms, min_reviews, nu
   mat = read_mat(path);
   mat = preprocess(mat, min_reviews);
 
+  # reduced SVD:
   [~, ~, V] = svds(mat, num_features);
   
-  similarities = zeros(size(V, 1), 1);
-  for i = 1 : size(V, 1)
+  n = size(V, 1);
+  similarities = zeros(n, 1);
+
+  # compare each row in V with the one corresponding to the liked theme:
+  for i = 1 : n
     similarities(i) = cosine_similarity(V(liked_theme, :)', V(i, :)');
   endfor
   
-  [~, sorted_indices] = sort(similarities, 'descend');
+  [sorted_sim, indices] = sort(similarities, 'descend');
   
-  recoms = sorted_indices(2 : num_recoms + 1);
+  # the first element corresponds to the liked_theme, so I skip it;
+  # return the next num_recoms indices:
+  recoms = indices(2 : num_recoms + 1);
   recoms = recoms';
 end
