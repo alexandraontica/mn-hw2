@@ -50,9 +50,9 @@ function coef = spline_c2 (x, y)
 	% the equations are equivalent with si''(x_i+1) - 2 * c_i+1 = 0
 	for i = 1 : n - 1
 		temp = x(i + 1) - x(i);
-		A(3 * n - 1+ i, 4 * i - 1) = 2; % ci's coefficient in the equation
-		A(3 * n - 1+ i, 4 * i) = 6 * temp; % di's coefficient in the equation
-		A(3 * n - 1+ i, 4 * i + 3) = -2; % c_i+1's coefficient in the equation
+		A(3 * n - 1 + i, 4 * i - 1) = 2; % ci's coefficient in the equation
+		A(3 * n - 1 + i, 4 * i) = 6 * temp; % di's coefficient in the equation
+		A(3 * n - 1 + i, 4 * i + 3) = -2; % c_i+1's coefficient in the equation
 	endfor
 
 	% TODO 6: s0''(x0) = 0

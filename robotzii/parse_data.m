@@ -9,8 +9,8 @@ function [x, y] = parse_data(filename)
 
     % TODO 2: Read n, x, y from the file
     n = fscanf(file, '%d', 1);
-    x = fscanf(file, '%f', n+1);
-    y = fscanf(file, '%f', n+1);
+    x = fscanf(file, '%f', n + 1);
+    y = fscanf(file, '%f', n + 1);
 
     % TODO 3: Close the file
     fclose(file);

@@ -1,20 +1,20 @@
 function x = oscillator(freq, fs, dur, A, D, S, R)
   % x = 0;
 
-  % DE PUS COMENTARII
-  % format long g;
-
+  % create time vector:
   t = (0 : 1 / fs : dur);
   t = t';
    
   sine_wave = sin(2 * pi * freq * t);
-   
+  
+  % compute the number of samples of each type:
   num_samp = length(t);
   a_samp = floor(A * fs);
   d_samp = floor(D * fs);
   r_samp = floor(R * fs);
   s_samp = num_samp - a_samp - d_samp - r_samp;
 
+  % compute the envelopes:
   a_env = linspace(0, 1, a_samp);
   a_env = a_env';
    
@@ -28,6 +28,7 @@ function x = oscillator(freq, fs, dur, A, D, S, R)
     
   adsr_env = [a_env; d_env; s_env; r_env];
     
+  % apply the amplitude modulation:
   x = sine_wave .* adsr_env;
-  x = x(1 : length(x) - 1); % x had an extra 0 at the end
+  x = x(1 : length(x) - 1);  % x had an extra 0 at the end
 endfunction

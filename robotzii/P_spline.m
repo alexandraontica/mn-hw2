@@ -10,7 +10,7 @@ function y_interp = P_spline (coef, x, x_interp)
 	n = length(x) - 1;
 
 	for i = 1 : m
-		% x is sorted in order to form intervals [x_i, x_i+1] (x_i < x_i+1)
+		% x is sorted in order to form intervals [x_i, x_i+1] (so x_i < x_i+1)
 		% binary search:
 		left = 1;
 		right = n + 1;
